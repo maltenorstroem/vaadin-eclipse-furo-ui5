@@ -12,10 +12,6 @@ import com.vaadin.flow.dom.Element;
 @JsModule("@furo/ui5/src/furo-ui5-header-panel.js")
 public class Ui5HeaderPanel extends Component implements HasComponents {
 
-   public Ui5HeaderPanel(String header) {
-      this.setHeaderText(header);
-   }
-
    public void setHeaderText(String headerText) {
       this.getElement().setProperty("headerText", headerText);
    }

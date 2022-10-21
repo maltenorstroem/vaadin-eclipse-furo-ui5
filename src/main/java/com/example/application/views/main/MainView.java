@@ -1,7 +1,9 @@
 package com.example.application.views.main;
 
+import com.example.application.domain.Activity;
 import com.example.application.ui5webcomponents.MultiComboBoxItem;
 import com.example.application.ui5webcomponents.ShellBar;
+import com.example.application.ui5webcomponents.Ui5Button;
 import com.example.application.ui5webcomponents.Ui5HeaderPanel;
 import com.example.application.ui5webcomponents.Ui5MultiComboBox;
 import com.vaadin.flow.component.Key;
@@ -14,6 +16,8 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.ReadOnlyHasValue;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -25,11 +29,25 @@ public class MainView extends Div {
 
     public MainView() {
 
+        Activity activity = new Activity();
+        activity.setDescription("Integrate custom components into Vaadin");
+        activity.setId("a443a04e-6e75-4128-9ab0-87f0bec58661");
+
+        Binder<Activity> binder = new Binder<>(Activity.class);
+
         ShellBar shellBar = new ShellBar();
         shellBar.setPrimaryTitle("Vaadin meets Eclipse Furo Ui5 Components");
 
-        Ui5HeaderPanel headerPanel = new Ui5HeaderPanel("Vaadin ToDo");
+        Ui5HeaderPanel headerPanel = new Ui5HeaderPanel();
         headerPanel.setIcon("task");
+
+        ReadOnlyHasValue<String> headerPanelDesc =
+              new ReadOnlyHasValue<>(
+                    headerPanel::setHeaderText);
+        binder.forField(headerPanelDesc)
+              .bind(Activity::getDescription, null);
+
+        binder.readBean(activity);
 
         VerticalLayout todosList = new VerticalLayout();
 
@@ -51,8 +69,11 @@ public class MainView extends Div {
         multiCombo1.add(item);
         multiCombo1.add(item2);
 
+        Ui5Button actionButton = new Ui5Button("GO!");
+        actionButton.setDesign("Transparent");
+
         headerPanel.add(multiCombo1);
-        headerPanel.addToAction(multiCombo1);
+        headerPanel.addToAction(multiCombo1, actionButton);
 
         TextField taskField = new TextField();
         Button addButton = new Button("Add");
