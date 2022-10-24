@@ -16,7 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @Theme(value = "mytodo")
-@PWA(name = "My Todo", shortName = "My Todo", offlineResources = {})
+@PWA(name = "Vaadin Eclipse Furo", shortName = "VEF", offlineResources = {})
 @NpmPackage(value = "line-awesome", version = "1.3.0")
 public class Application implements AppShellConfigurator {
 

@@ -1,6 +1,7 @@
 package com.example.application.views.main;
 
 import com.example.application.domain.Activity;
+import com.example.application.ui5webcomponents.FuroHorizontalFlex;
 import com.example.application.ui5webcomponents.MultiComboBoxItem;
 import com.example.application.ui5webcomponents.ShellBar;
 import com.example.application.ui5webcomponents.Ui5Button;
@@ -72,8 +73,16 @@ public class MainView extends Div {
         Ui5Button actionButton = new Ui5Button("GO!");
         actionButton.setDesign("Transparent");
 
-        headerPanel.add(multiCombo1);
-        headerPanel.addToAction(multiCombo1, actionButton);
+        actionButton.addClickListener(e ->
+              actionButton.getUI().ifPresent(ui ->
+                    ui.navigate("activity"))
+        );
+
+        FuroHorizontalFlex horizontalFlex = new FuroHorizontalFlex();
+        horizontalFlex.getElement().setAttribute("space", "");
+        horizontalFlex.add(multiCombo1,actionButton);
+
+        headerPanel.addToAction(horizontalFlex);
 
         TextField taskField = new TextField();
         Button addButton = new Button("Add");

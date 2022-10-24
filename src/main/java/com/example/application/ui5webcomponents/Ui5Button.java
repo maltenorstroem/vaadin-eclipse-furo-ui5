@@ -1,18 +1,14 @@
 package com.example.application.ui5webcomponents;
 
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.HasSize;
-import com.vaadin.flow.component.HasStyle;
-import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.GeneratedVaadinButton;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 
-@Tag("furo-ui5-button")
+@Tag("ui5-button")
 @NpmPackage(value = "@ui5/webcomponents", version = "^1.8.0")
 @JsModule("@ui5/webcomponents/dist/Button.js")
 public class Ui5Button extends GeneratedVaadinButton<Button> implements HasSize, HasEnabled {
